@@ -1,0 +1,12 @@
+.main-chat {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 110px;
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); // 4 колонки по 400px каждая
+        gap: 12px; // Опционально: задайте промежуток между колонками
+    }
+}

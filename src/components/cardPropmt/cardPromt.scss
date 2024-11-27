@@ -1,0 +1,27 @@
+.card-promt {
+    position: relative;
+    background: var(--background-seven-color);
+    padding: 16px;
+    min-height: 226px;
+    border-radius: 10px;
+
+    &__imgContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 42px;
+        height: 42px;
+        position: absolute;
+        background: var(--background-eight-color);
+        border-radius: 100%;
+        right: 16px;
+        bottom: 16px;
+    }
+
+    &__text {
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 28px;
+        color: var(--text-primary-color);
+    }
+}
