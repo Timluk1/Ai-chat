@@ -1,5 +1,5 @@
-import CreateChatIcon from "../../assets/create-chat.svg"
-import "./createChat.scss"
+import CreateChatIcon from "../../assets/create-chat.svg";
+import "./createChat.scss";
 
 export default function CreateChat() {
     return (
@@ -8,5 +8,5 @@ export default function CreateChat() {
                 <img className="create-chat__img" src={CreateChatIcon} alt="" />
             </div>
         </button>
-    )
+    );
 }

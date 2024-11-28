@@ -1,18 +1,22 @@
 :root {
-    --background-primary-color: #F0F4F9;
-    --background-secondary-color: #F3EDF7;
-    --background-third-color: #ECE6F0;
-    --background-fourth-color: #49454F;
-    --background-five-color: #F7F2FA;
-    --background-six-color: #DED8E1;
-    --background-seven-color: #E6E0E9;
-    --background-eight-color: #FFFFFF;
+    --background-primary-color: #f0f4f9;
+    --background-secondary-color: #f3edf7;
+    --background-third-color: #ece6f0;
+    --background-fourth-color: #49454f;
+    --background-five-color: #f7f2fa;
+    --background-six-color: #ded8e1;
+    --background-seven-color: #e6e0e9;
+    --background-eight-color: #ffffff;
 
-    --text-primary-color: #49454F;
-    --text-secondary-color: #C4C7C5;
+    --text-primary-color: #49454f;
+    --text-secondary-color: #c4c7c5;
 
-    
-    --text-primary-gradient: -webkit-linear-gradient(78.7deg, #439DDF 12.52%, #4F87ED 35.44%, #9476C5 46.7%, #BC688E 51.37%, #D6645D 56.25%);
+    --text-primary-gradient: -webkit-linear-gradient(
+        78.7deg,
+        #439ddf 12.52%,
+        #4f87ed 35.44%,
+        #9476c5 46.7%,
+        #bc688e 51.37%,
+        #d6645d 56.25%
+    );
 }
-
-

@@ -1,9 +1,13 @@
-import BurgerMenu from "../burgerMenu/burgerMenu"
-import CreateChat from "../createChat/createChat"
-import Settings from "../../assets/settings.svg"
-import History from "../../assets/history.svg"
-import Help from "../../assets/help.svg"
-import "./sidebar.scss"
+import BurgerMenu from "../burgerMenu/burgerMenu";
+import CreateChat from "../createChat/createChat";
+import Settings from "../../assets/settings.svg";
+import History from "../../assets/history.svg";
+import Help from "../../assets/help.svg";
+import "./sidebar.scss";
+
+interface ISidebarProps {
+    active: boolean;
+}
 
 export default function Sidebar() {
     return (
@@ -33,5 +37,5 @@ export default function Sidebar() {
                 </ul>
             </div>
         </aside>
-    )
+    );
 }

@@ -1,7 +1,6 @@
-@import "./resets/reset.scss";
-@import "./themes/light.scss";
-@import "./themes/dark.scss";
-
+@use "./resets/reset.scss";
+@use "./themes/light.scss";
+@use "./themes/dark.scss";
 
 body {
     font-family: "Roboto", sans-serif;

@@ -1,0 +1,38 @@
+.promt-input {
+    display: flex;
+    background: var(--background-third-color);
+    border-radius: 28px;
+    padding: 17px;
+
+    &__input {
+        font-family: "Roboto", sans-serif;
+        text-wrap: wrap;
+        width: 100%;
+        font-weight: 400;
+        font-size: 22px;
+        min-height: 40px;
+        line-height: 28px;
+        color: var(--text-primary-color);
+        background: transparent;
+        overflow-y: hidden;
+        resize: none;
+        background: var(--background-third-color);
+        &::placeholder {
+            color: var(--text-primary-color);
+            
+        }
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+}
+}
+
+.buttons-list{
+    &__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

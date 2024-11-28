@@ -4,106 +4,115 @@
     margin: 0px;
     border: none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  }
-  
-  *,
-  *::before,
-  *::after {
+}
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-  }
-  
-  /* Links */
-  
-  a,
-  a:link,
-  a:visited {
+}
+
+/* Links */
+
+a,
+a:link,
+a:visited {
     text-decoration: none;
     color: inherit;
-  }
-  
-  a:hover {
+}
+
+a:hover {
     text-decoration: none;
-  }
-  
-  /* Common */
-  
-  aside,
-  nav,
-  footer,
-  header,
-  section,
-  main {
+}
+
+/* Common */
+
+aside,
+nav,
+footer,
+header,
+section,
+main {
     display: block;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
     font-size: inherit;
     font-weight: inherit;
-  }
-  
-  ul,
-  ul li {
+}
+
+ul,
+ul li {
     list-style: none;
-  }
-  
-  img {
+}
+
+img {
     vertical-align: top;
-  }
-  
-  address {
+}
+
+address {
     font-style: normal;
-  }
-  
-  /* Form */
-  
-  input,
-  textarea,
-  button,
-  select {
+}
+
+/* Form */
+
+input,
+textarea,
+button,
+select {
     font-size: inherit;
     color: inherit;
     background-color: transparent;
-  }
-  
-  input::-ms-clear {
+}
+
+input::-ms-clear {
     display: none;
-  }
-  
-  button,
-  input[type='submit'],
-  a,
-  label {
+}
+
+button,
+input[type="submit"],
+a,
+label {
     display: inline-block;
     box-shadow: none;
     background-color: transparent;
     background: none;
     cursor: pointer;
-  }
-  
-  input:focus,
-  input:active,
-  button:focus,
-  button:active {
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
     outline: none;
-  }
-  
-  button::-moz-focus-inner {
+}
+
+button::-moz-focus-inner {
     padding: 0;
     border: 0;
-  }
-  
-  legend {
+}
+
+legend {
     display: block;
-  }
-  
-  table,
-  th,
-  td {
+}
+
+table,
+th,
+td {
     border-collapse: collapse;
-  }
+}
+
+
+input:focus {
+    outline: none;
+}
+
+textarea:focus {
+    outline: none;
+}
