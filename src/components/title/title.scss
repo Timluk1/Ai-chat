@@ -4,15 +4,14 @@
         background: var(--text-primary-gradient);
         width: 320px;
         font-weight: 500;
-        font-size: 57px;
+        font-size: 3rem;
         line-height: 64px;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 34px;
     }
     &__text {
         color: var(--text-secondary-color);
-        font-size: 57px;
+        font-size: 3rem;
         line-height: 64px;
         font-weight: 500;
     }

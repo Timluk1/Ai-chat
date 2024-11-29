@@ -1,9 +1,9 @@
 .burger-menu {
     cursor: pointer;
     display: flex;
-    gap: 5px;
+    gap: 3px;
     flex-direction: column;
-    width: 28px;
+    width: 20px;
     margin-bottom: 57px;
     &__line {
         background: var(--background-fourth-color);

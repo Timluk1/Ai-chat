@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { chats } from '../../utils/someExampleChats'
+
+interface Message {
+  role: string
+  parts: { text: string }[]
+}
 
 interface Chat {
     name: string
     id: number
-    history: string[]
+    history: Message[]
 }
 
 export interface ChatsState {
@@ -11,7 +17,7 @@ export interface ChatsState {
 }
 
 const initialState: ChatsState = {
-    chats: []
+    chats: chats
 }
 
 export const chatsSlice = createSlice({
@@ -23,6 +29,6 @@ export const chatsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {  } = chatsSlice.actions
+// export const {  } = chatsSlice.actions
 
 export default chatsSlice.reducer

@@ -5,18 +5,22 @@
     flex-direction: column;
     padding: 27px 22px;
     background: var(--background-five-color);
-    max-width: 100px;
+    overflow: hidden;
+
     &__buttons {
         display: flex;
         align-items: center;
         flex-direction: column;
     }
+
     &__list {
         display: flex;
         flex-direction: column;
         gap: 48px;
+
         &-item {
             display: flex;
+            gap: 18px;
             justify-content: center;
         }
     }

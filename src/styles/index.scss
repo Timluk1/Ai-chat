@@ -1,9 +1,9 @@
 @use "./resets/reset.scss";
+@use "./mixins.scss" as mixins;
 @use "./themes/light.scss";
 @use "./themes/dark.scss";
 
 body {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+    @include mixins.default-font;
+    overflow: hidden;
 }

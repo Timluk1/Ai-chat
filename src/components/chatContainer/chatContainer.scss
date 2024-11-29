@@ -1,4 +1,5 @@
 .chat-container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -6,4 +7,5 @@
     width: 100%;
     padding-top: 110px;
     margin: 0 auto;
+    overflow-y: auto;
 }

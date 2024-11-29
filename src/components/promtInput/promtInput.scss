@@ -1,11 +1,16 @@
+@use "../../styles/mixins.scss" as mixins;
+
 .promt-input {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     display: flex;
     background: var(--background-third-color);
     border-radius: 28px;
     padding: 17px;
 
     &__input {
-        font-family: "Roboto", sans-serif;
+        @include mixins.default-font;
         text-wrap: wrap;
         width: 100%;
         font-weight: 400;

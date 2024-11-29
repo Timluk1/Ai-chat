@@ -1,14 +1,17 @@
 .create-chat {
+    display: flex;
+    gap: 11px;
     cursor: pointer;
-    width: 56px;
-    height: 56px;
-    padding: 20px;
+    padding: 15px;
     border-radius: 16px;
     background: var(--background-third-color);
     transition: background 0.3s ease-in-out;
     &__img {
         width: 16px;
         height: 16px;
+    }
+    &__text {
+        color: var(--text-third-color);
     }
     &:hover {
         background: var(--background-six-color);
