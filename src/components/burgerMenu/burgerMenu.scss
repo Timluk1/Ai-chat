@@ -1,12 +1,12 @@
 .burger-menu {
-    cursor: pointer;
-    display: flex;
-    gap: 3px;
-    flex-direction: column;
-    width: 20px;
+    padding: 10px;
     margin-bottom: 57px;
-    &__line {
-        background: var(--background-fourth-color);
-        height: 3px;
+    border-radius: 10px;
+    &__img {
+        width: 20px;
+        height: 20px;
+    }
+    &:hover {
+        background: var(--background-six-color);
     }
 }
