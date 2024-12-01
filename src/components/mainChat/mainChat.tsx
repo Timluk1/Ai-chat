@@ -4,7 +4,7 @@ import classNames from "classnames";
 import "./mainChat.scss";
 
 interface IMainChatProps {
-    showName: boolean
+    showName: boolean;
 }
 
 export default function MainChat({ showName }: IMainChatProps) {

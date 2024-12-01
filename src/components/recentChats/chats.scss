@@ -1,0 +1,14 @@
+.recent-chats {
+    &__title {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.1px;
+        margin-bottom: 24px;
+    }
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+}

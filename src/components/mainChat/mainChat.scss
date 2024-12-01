@@ -7,7 +7,7 @@
     &__list {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 12px; 
+        gap: 12px;
     }
     &.hidden {
         display: none;

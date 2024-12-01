@@ -6,9 +6,12 @@
     padding: 27px 22px;
     background: var(--background-five-color);
 
+    &__createChat {
+        margin-bottom: 24px;
+    }
+
     &__buttons {
         display: flex;
-        align-items: center;
         flex-direction: column;
     }
 
@@ -19,8 +22,12 @@
 
         &-item {
             display: flex;
-            gap: 18px;
             justify-content: center;
+            button {
+                display: flex;
+                gap: 18px;
+                justify-content: center;
+            }
         }
     }
 }

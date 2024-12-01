@@ -24,17 +24,16 @@
         background: var(--background-third-color);
         &::placeholder {
             color: var(--text-primary-color);
-            
         }
     }
     &__buttons {
         display: flex;
         justify-content: space-between;
         gap: 20px;
-}
+    }
 }
 
-.buttons-list{
+.buttons-list {
     &__item {
         display: flex;
         justify-content: center;

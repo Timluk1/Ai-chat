@@ -17,3 +17,13 @@
         background: var(--background-six-color);
     }
 }
+
+.create-chat-tooltip {
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .create-chat-tooltip {
+        display: none;
+    }
+}

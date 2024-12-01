@@ -4,21 +4,37 @@ import { Tooltip } from "react-tooltip";
 import "./createChat.scss";
 
 interface ICreateChatProps {
-    active: boolean
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+    className?: string;
+    active: boolean;
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function CreateChat({ active, onClick }: ICreateChatProps) {
+export default function CreateChat({
+    className,
+    active,
+    onClick,
+}: ICreateChatProps) {
     return (
-        <button onClick={onClick}>
-            <div className="create-chat" data-tooltip-id="сreate-chat-tooltip" data-tooltip-content="Создать новый чат">
-                <Tooltip id="сreate-chat-tooltip"/>
-                <img className="create-chat__img" src={CreateChatIcon} alt="" />
-                {
-                    active
-                    &&
-                    <p className="create-chat__text">New chat</p>
-                }
+        <button
+            onClick={onClick}
+            className={`${className} ${active ? "active" : ""}`}
+        >
+            <div
+                className="create-chat"
+                data-tooltip-id="create-chat-tooltip"
+                data-tooltip-content="Создать новый чат"
+            >
+                <Tooltip
+                    id="create-chat-tooltip"
+                    className="create-chat-tooltip"
+                    place="right"
+                />
+                <img
+                    className="create-chat__img"
+                    src={CreateChatIcon}
+                    alt="Create chat"
+                />
+                {active && <p className="create-chat__text">New chat</p>}
             </div>
         </button>
     );

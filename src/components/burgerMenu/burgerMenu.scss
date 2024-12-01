@@ -1,12 +1,24 @@
 .burger-menu {
+    display: block;
     padding: 10px;
     margin-bottom: 57px;
     border-radius: 10px;
+    transition: background 0.2s ease-in-out;
     &__img {
         width: 20px;
         height: 20px;
     }
     &:hover {
         background: var(--background-six-color);
+    }
+}
+
+.burger-menu-tooltip {
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .burger-menu-tooltip {
+        display: none;
     }
 }
