@@ -9,20 +9,14 @@ export interface INewMessage {
     message: string;
 }
 
-export interface INewMessage {
-    from: "ai" | "user";
-    name: string;
-    message: string;
-}
-
 interface IGenerateText {
     error: string;
     loading: boolean;
 }
 
 interface IMessageState {
-    messages: IMessage[]
-    generateText: IGenerateText
+    messages: IMessage[];
+    generateText: IGenerateText;
 }
 
 const createSliceWithThunks = buildCreateSlice({
@@ -33,60 +27,59 @@ const initialState: IMessageState = {
     messages,
     generateText: {
         error: "",
-        loading: false
-    }
+        loading: false,
+    },
 };
 
-// слайс для добавления сообщений и генерации текста ai
+// Слайс для добавления сообщений и генерации текста AI
 export const messagesSlice = createSliceWithThunks({
     name: "messages",
     initialState,
     reducers: (create) => ({
         addNewMessage: create.reducer((state, action: PayloadAction<INewMessage>) => {
-            console.log("NEW MESSAGE")
             state.messages.push({
                 id: nanoid(),
-                ...action.payload
-        });
+                ...action.payload,
+            });
         }),
-        generateTextAi: create.asyncThunk<IMessage | void, INewMessage, { rejectValue: string}>(
-            // async thunk для генерации текста ai
-            async ({ name, message, from}, { rejectWithValue}) => {
+        generateTextAi: create.asyncThunk<IMessage, INewMessage, { rejectValue: string }>(
+            // async thunk для генерации текста AI
+            async ({ name, message}, { rejectWithValue }) => {
                 try {
-                    // генерируем текст
+                    // Генерация текста
                     const aiAnswer = await AiApiInstance.generateText(message);
 
-                    // формируем новое сообщение для хранения
-                    const newMessage: IMessage = {
+                    // Формирование нового сообщения для хранения
+                    return {
                         id: nanoid(),
                         message: aiAnswer,
-                        from: from,
-                        name
-                    }
-                    return newMessage;
+                        from: "ai", // Здесь можно явно указать, что ответ от AI
+                        name,
+                    };
                 } catch (error) {
-                    console.log(error)
-                    rejectWithValue("Ошибка при генерации текста")
+                    console.error(error);
+                    return rejectWithValue("Ошибка при генерации текста");
                 }
             },
             {
                 pending: (state) => {
-                    state.generateText.loading = true
+                    state.generateText.loading = true;
                 },
-                fulfilled: (state, action) => {
-                    console.log(action.payload)
+                fulfilled: (state, action: PayloadAction<IMessage>) => {
+                    // Добавляем сообщение только в случае успешного выполнения
                     state.generateText.loading = false;
+                    state.messages.push(action.payload);
                 },
                 rejected: (state, action) => {
                     state.generateText.loading = false;
-                    console.log(action)
+                    if (action.payload) {
+                        state.generateText.error = action.payload;
+                    }
                 },
             }
-        
-        )
+        ),
     }),
-})
-
+});
 
 export const { addNewMessage, generateTextAi } = messagesSlice.actions;
 export default messagesSlice.reducer;

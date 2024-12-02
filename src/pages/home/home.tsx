@@ -2,14 +2,12 @@ import MainChat from "components/chat/mainChat/mainChat";
 import { Sidebar } from "components/sidebar/sidebar";
 import { ChatContainer } from "components/helpers/chatContainer";
 import { PromtInput } from "components/chat/promtInput";
-import { AiApiInstance } from "api/aiApi";
 import MessagesList from "components/chat/messagesList/messagesList";
-import { useAppDispatch } from "../../hooks/useAppDispatch"
-import { generateTextAi, addNewMessage } from "../../store/messages/messagesSlice";
-import { useAppSelector } from "../../hooks/useAppSelector";
+import { useAppDispatch } from "hooks/useAppDispatch"
+import { generateTextAi, addNewMessage } from "store/messages/messagesSlice";
+import { useAppSelector } from "hooks/useAppSelector";
 import { useState } from "react";
-// import { removeMarkdownSymbols } from "../../utils/markdown";
-import { INewMessage } from "../../store/messages/messagesSlice";
+import { INewMessage } from "store/messages/messagesSlice";
 import "./home.scss";
 
 
