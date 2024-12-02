@@ -1,9 +1,0 @@
-.messages-list {
-    &__item {
-        display: flex;
-        justify-content: end;
-        &.ai-message {
-            justify-content: start;
-        }
-    }
-}

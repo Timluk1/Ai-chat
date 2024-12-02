@@ -11,4 +11,16 @@ export default defineConfig({
             },
         },
     },
+    resolve: {
+        alias: {
+            assets: "/src/assets",
+            api: "/src/api",
+            pages: "/src/pages",
+            components: "/src/components",
+            hooks: "/src/hooks",
+            store: "/src/store",
+            utils: "/src/utils",
+            styles: "/src/styles",
+        },
+    },
 });

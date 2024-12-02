@@ -1,30 +1,21 @@
-import MainChat from "../../components/mainChat/mainChat";
-import Sidebar from "../../components/sidebar/sidebar";
-import ChatContainer from "../../components/chatContainer/chatContainer";
-import PromtInput from "../../components/promtInput/promtInput";
-import { AiApiInstance } from "../../api/aiApi";
-import { useState } from "react";
-import AiAnswer from "../../components/aiAnswer/aiAnswer";
-import MessagesList from "../../components/messagesList/messagesList";
+import MainChat from "components/chat/mainChat/mainChat";
+import { Sidebar } from "components/sidebar/sidebar";
+import { ChatContainer } from "components/helpers/chatContainer";
+import { PromtInput } from "components/chat/promtInput";
+import { AiApiInstance } from "api/aiApi";
+import MessagesList from "components/chat/messagesList/messagesList";
 import { useAppDispatch } from "../../hooks/useAppDispatch"
-import { addMessage } from "../../store/messages/messagesSlice";
+import { generateTextAi, addNewMessage } from "../../store/messages/messagesSlice";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { useState } from "react";
+// import { removeMarkdownSymbols } from "../../utils/markdown";
+import { INewMessage } from "../../store/messages/messagesSlice";
 import "./home.scss";
-
-export function removeMarkdownSymbols(text: string): string {
-    return text
-        .replace(/[*_~`#>+\-=\[\]\(\)!\\]/g, "") // Удаляет общие markdown символы
-        .replace(/!\[.*?\]\(.*?\)/g, "") // Удаляет картинки
-        .replace(/\[.*?\]\(.*?\)/g, "") // Удаляет ссылки
-        .replace(/```[\s\S]*?```/g, "") // Удаляет кодовые блоки
-        .replace(/`.*?`/g, ""); // Удаляет inline-код
-}
 
 
 export default function Home() {
     const dispacth = useAppDispatch();
     const messages = useAppSelector((state) => state.messages.messages);
-    const [textAns, setTextAns] = useState<string>("");
     const [textPromt, setTextPromt] = useState<string>("");
     const [showName, setShowName] = useState<boolean>(!messages.length);
 
@@ -39,19 +30,24 @@ export default function Home() {
         if (textPromt === "") return;
         // очищаем инпут
         setTextPromt("");
-    
-        // получаем сгенерированный текст 
-        const aiText = await AiApiInstance.generateText(textPromt);
-        setTextAns(aiText);
-    
-        // Используем функцию для удаления markdown-символов
-        const newAiMessage: { from: "user" | "ai"; name: string; message: string } = {
-            from: "ai",
-            name: removeMarkdownSymbols(aiText.slice(0, 10)),
-            message: aiText
-        };
+        // данные для добавления в список сообщений
+        const newUserMessage: INewMessage = {
+            from: "user",
+            message: textPromt,
+            name: "user"
+        }
+        //  добавляем сообщение пользователя
+        dispacth(addNewMessage(newUserMessage))
+
+        // данные для добавления ответа ai и получения ответа
+        const newAiMessage: INewMessage = {
+            from: "user",
+            message: textPromt,
+            name: "ai"
+        }
         
-        dispacth(addMessage(newAiMessage));
+        // вызываем асинхронную функцю для генерации текста
+        await dispacth(generateTextAi(newAiMessage));
         setShowName(false);
     };
 
@@ -59,16 +55,18 @@ export default function Home() {
         <div className="home">
             <Sidebar />
             <ChatContainer>
-                <AiAnswer textMarkdown={textAns} />
-                {showName ? (
-                    <MainChat showName={showName} />
-                ) : (
-                    <MessagesList messages={messages} />
-                )}
+                {
+                    showName
+                        ?
+                        <MainChat showName={showName} />
+                        :
+                        <MessagesList messages={messages} />
+                }
                 <PromtInput
                     text={textPromt}
                     onChange={changeText}
                     generateText={generateText}
+                    loading={false}
                 />
             </ChatContainer>
         </div>

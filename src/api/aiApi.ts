@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI, GenerativeModel } from "@google/generative-ai";
 
+// api для работы с нейросетями от google
 class AiApi {
     private genAi: GoogleGenerativeAI;
     private model: GenerativeModel;

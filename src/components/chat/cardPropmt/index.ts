@@ -1,0 +1,1 @@
+export { CardPromt } from "./cardPromt"

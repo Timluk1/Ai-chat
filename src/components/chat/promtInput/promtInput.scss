@@ -1,0 +1,48 @@
+@use "styles/mixins.scss" as mixins;
+
+.promt-input {
+    width: 100%;
+    display: flex;
+    background: var(--background-third-color);
+    border-radius: 28px;
+    padding: 17px;
+    &-layout {
+        background-color: white;
+        position: sticky;
+        bottom: 0;
+        padding-bottom: 20px;
+    }
+
+    &__input {
+        @include mixins.default-font;
+        margin-right: 20px;
+        width: 100%;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 28px;
+        color: var(--text-primary-color);
+        background: transparent;
+        overflow-y: hidden;
+        resize: none;
+        background: var(--background-third-color);
+        &::placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+}
+
+.buttons-list {
+    &__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
