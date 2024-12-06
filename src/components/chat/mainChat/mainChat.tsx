@@ -1,15 +1,10 @@
 import { TitleName } from "components/chat/titleName"
 import { CardPromt } from "components/chat/cardPropmt"
-import classNames from "classnames";
 import "./mainChat.scss";
 
-interface IMainChatProps {
-    showName: boolean;
-}
-
-export default function MainChat({ showName }: IMainChatProps) {
+export const MainChat: React.FC = () => {
     return (
-        <main className={classNames("main-chat", !showName && "hidden")}>
+        <main className="main-chat">
             <TitleName />
             <ul className="main-chat__list">
                 <li className="main-chat__list-item">
@@ -26,5 +21,5 @@ export default function MainChat({ showName }: IMainChatProps) {
                 </li>
             </ul>
         </main>
-    );
+    )
 }

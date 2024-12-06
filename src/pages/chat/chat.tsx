@@ -1,31 +1,28 @@
-import { MainChat } from "components/chat/mainChat/mainChat";
-import { Sidebar } from "components/sidebar/sidebar";
-import { ChatContainer } from "components/helpers/chatContainer";
-import { PromtInput } from "components/chat/promtInput";
+import { Sidebar } from "components/sidebar/sidebar"
+import { ChatContainer } from "components/helpers/chatContainer"
+import { MessagesList } from "components/chat/messagesList/messagesList"
+import { useAppSelector } from "hooks/useAppSelector"
+import { PromtInput } from "components/chat/promtInput"
+import { useState } from "react"
+import { addNewMessage } from "store/messages/messagesSlice"
 import { useAppDispatch } from "hooks/useAppDispatch"
-import { generateTextAi, addNewMessage } from "store/messages/messagesSlice";
-import { useAppSelector } from "hooks/useAppSelector";
-import { useState } from "react";
-import { INewMessage } from "store/messages/messagesSlice";
-import { createChat } from "store/chats/chatsSlice";
-import { useNavigate } from "react-router";
-import { nanoid } from "nanoid";
-import { IChat } from "store/chats/chatsSlice";
-import "./home.scss";
+import { INewMessage } from "store/messages/messagesSlice"
+import { generateTextAi } from "store/messages/messagesSlice"
+import { useParams } from "react-router"
+import "./chat.scss"
 
-export const Home: React.FC = () => {
+export const Chat = () => {
+    // получаем айди чата из параметров
+    const { id } = useParams();
     const dispacth = useAppDispatch();
-    const navigate = useNavigate();
     const [textPromt, setTextPromt] = useState<string>("");
     const loading = useAppSelector((state) => state.messages.generateText.loading);
+    const messages = useAppSelector((state) => state.messages.messages)
 
-    // смена текста
     const changeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTextPromt(e.target.value);
     };
 
-
-    // генерация текста при клике нейросестью
     const generateText = async () => {
         // проверка наличия промта
         if (textPromt === "") return;
@@ -36,16 +33,7 @@ export const Home: React.FC = () => {
             from: "user",
             message: textPromt,
             name: "user"
-        }
-
-        const chatId = nanoid();
-
-        const newChat: IChat  = {
-            id: chatId,
-            name: textPromt.slice(0, 10)
-        }
-        // создаем чат
-        dispacth(createChat(newChat));
+        }  
         //  добавляем сообщение пользователя
         dispacth(addNewMessage(newUserMessage))
 
@@ -57,16 +45,14 @@ export const Home: React.FC = () => {
         }
 
         // вызываем асинхронную функцю для генерации текста
-         await dispacth(generateTextAi(newAiMessage));
+        await dispacth(generateTextAi(newAiMessage));
 
-        navigate("/chat/" + chatId);
     };
-
     return (
-        <div className="home-page">
+        <div className="chat-page">
             <Sidebar />
             <ChatContainer>
-                <MainChat />
+                <MessagesList messages={messages}/>
                 <PromtInput
                     text={textPromt}
                     onChange={changeText}
@@ -75,5 +61,5 @@ export const Home: React.FC = () => {
                 />
             </ChatContainer>
         </div>
-    );
+    )
 }

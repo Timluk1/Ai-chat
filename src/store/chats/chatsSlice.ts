@@ -1,14 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { buildCreateSlice, asyncThunkCreator, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {};
+export interface IChat {
+    id: string;
+    name: string;
+}
 
-export const chatsSlice = createSlice({
-    name: "chats",
-    initialState,
-    reducers: {},
+interface IChatState {
+    chats: IChat[]
+}
+
+const initialState: IChatState = {
+    chats: []
+};
+
+const createSliceWithThunks = buildCreateSlice({
+    creators: { asyncThunk: asyncThunkCreator },
 });
 
-// Action creators are generated for each case reducer function
-// export const {  } = chatsSlice.actions
+export const chatsSlice = createSliceWithThunks({
+    name: "chats",
+    initialState,
+    reducers: (create) => ({
+        createChat: create.reducer((state, { payload }: PayloadAction<IChat>) => {
+            state.chats.push(payload);
+        })
+    })
+});
 
+
+export const { createChat } = chatsSlice.actions;
 export default chatsSlice.reducer;

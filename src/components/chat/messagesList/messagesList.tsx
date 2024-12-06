@@ -8,7 +8,7 @@ interface IMessagesListProps {
     messages: IMessage[];
 }
 
-export default function MessagesList({ messages }: IMessagesListProps) {
+export const MessagesList: React.FC<IMessagesListProps> = ({ messages }) => {
     return (
         <div>
             <ul className="messages-list">
@@ -21,7 +21,7 @@ export default function MessagesList({ messages }: IMessagesListProps) {
                             )}
                         >
                             {from === "ai" ? (
-                                <div>
+                                <div className="ai-layout">
                                     <AiAnswer textMarkdown={message} />
                                 </div>
                             ) : (

@@ -5,10 +5,17 @@ import History from "assets/history.svg";
 import Help from "assets/help.svg";
 import { RecentChats } from "../recentChats";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import "./sidebar.scss";
 
 export const Sidebar = () => {
+    const navigate = useNavigate();
     const [active, setActive] = useState<boolean>(false);
+
+    const onClickCreateChat = () => {
+        navigate("chat")
+    }
+
 
     return (
         <aside className="sidebar">
@@ -20,7 +27,7 @@ export const Sidebar = () => {
                 <CreateChat
                     className="sidebar__createChat"
                     active={active}
-                    onClick={() => setActive(!active)}
+                    onClick={onClickCreateChat}
                 />
                 {active && <RecentChats />}
             </div>

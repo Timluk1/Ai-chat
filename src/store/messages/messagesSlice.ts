@@ -15,6 +15,7 @@ interface IGenerateText {
 }
 
 interface IMessageState {
+    idChat: string;
     messages: IMessage[];
     generateText: IGenerateText;
 }
@@ -24,6 +25,7 @@ const createSliceWithThunks = buildCreateSlice({
 });
 
 const initialState: IMessageState = {
+    idChat: "1",
     messages,
     generateText: {
         error: "",
