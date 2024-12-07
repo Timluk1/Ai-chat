@@ -8,12 +8,9 @@ import { addNewMessage } from "store/messages/messagesSlice"
 import { useAppDispatch } from "hooks/useAppDispatch"
 import { INewMessage } from "store/messages/messagesSlice"
 import { generateTextAi } from "store/messages/messagesSlice"
-import { useParams } from "react-router"
 import "./chat.scss"
 
 export const Chat = () => {
-    // получаем айди чата из параметров
-    const { id } = useParams();
     const dispacth = useAppDispatch();
     const [textPromt, setTextPromt] = useState<string>("");
     const loading = useAppSelector((state) => state.messages.generateText.loading);
