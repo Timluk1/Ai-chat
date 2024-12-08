@@ -6,10 +6,10 @@ interface IPromtInputProps {
     text: string;
     loading: boolean;
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    generateText: () => void;
+    onClickGenerateText: () => void;
 }
 
-export const PromtInput: React.FC<IPromtInputProps> = ({ text, loading, onChange, generateText }) => {
+export const PromtInput: React.FC<IPromtInputProps> = ({ text, loading, onChange, onClickGenerateText}) => {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     // Функция для изменения высоты
@@ -24,6 +24,7 @@ export const PromtInput: React.FC<IPromtInputProps> = ({ text, loading, onChange
         adjustHeight();
     }, []);
 
+
     return (
         <div className="promt-input-layout">
             <div className="promt-input">
@@ -34,10 +35,10 @@ export const PromtInput: React.FC<IPromtInputProps> = ({ text, loading, onChange
                     className="promt-input__input"
                     placeholder="Enter a prompt here"
                     onInput={adjustHeight}
-                    onKeyDown={(e) => e.key === "Enter" && generateText()}
+                    onKeyDown={(e) => e.key === "Enter" && onClickGenerateText}
                 />
                 <ul className="promt-input__buttons buttons-list">
-                    <SendIcon loading={loading} disabled={text === ""} onClick={() => generateText()} />
+                    <SendIcon loading={loading} disabled={text === ""} onClick={onClickGenerateText} />
                 </ul>
             </div>
         </div>

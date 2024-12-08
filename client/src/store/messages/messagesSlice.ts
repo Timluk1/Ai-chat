@@ -1,13 +1,8 @@
 import { buildCreateSlice, asyncThunkCreator, PayloadAction } from "@reduxjs/toolkit";
-import { IMessage, messages } from "../../utils/someExampleChats";
+import { IMessage } from "models/message";
+import type { INewMessage } from "models/message";
 import { nanoid } from "nanoid";
 import { AiApiInstance } from "api/aiApi";
-
-export interface INewMessage {
-    from: "ai" | "user";
-    name: string;
-    message: string;
-}
 
 interface IGenerateText {
     error: string;
@@ -26,7 +21,7 @@ const createSliceWithThunks = buildCreateSlice({
 
 const initialState: IMessageState = {
     idChat: "1",
-    messages,
+    messages: [],
     generateText: {
         error: "",
         loading: false,
@@ -46,7 +41,7 @@ export const messagesSlice = createSliceWithThunks({
         }),
         generateTextAi: create.asyncThunk<IMessage, INewMessage, { rejectValue: string }>(
             // async thunk для генерации текста AI
-            async ({ name, message}, { rejectWithValue }) => {
+            async ({ name, message, chat}, { rejectWithValue }) => {
                 try {
                     // Генерация текста
                     const aiAnswer = await AiApiInstance.generateText(message);
@@ -54,6 +49,7 @@ export const messagesSlice = createSliceWithThunks({
                     // Формирование нового сообщения для хранения
                     return {
                         id: nanoid(),
+                        chat: chat, 
                         message: aiAnswer,
                         from: "ai", // Здесь можно явно указать, что ответ от AI
                         name,

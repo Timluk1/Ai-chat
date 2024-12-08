@@ -1,9 +1,5 @@
 import { buildCreateSlice, asyncThunkCreator, PayloadAction } from "@reduxjs/toolkit";
-
-export interface IChat {
-    id: string;
-    name: string;
-}
+import { IChat } from "models/chat";
 
 interface IChatState {
     chats: IChat[]

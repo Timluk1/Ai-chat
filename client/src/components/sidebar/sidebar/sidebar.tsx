@@ -12,7 +12,6 @@ import "./sidebar.scss";
 export const Sidebar = () => {
     const navigate = useNavigate();
     const [active, setActive] = useState<boolean>(false);
-
     const onClickCreateChat = () => {
         navigate("/chat")
     }
