@@ -45,15 +45,3 @@
         width: 400px;
     }
 }
-
-
-@media (max-width: 768px) {
-    .sidebar {
-        padding: 27px 16px;
-        position: absolute;
-        left: 0;
-        margin-right: 10px;
-        z-index: 1;
-    }
-    
-}

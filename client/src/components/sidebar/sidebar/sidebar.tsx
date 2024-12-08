@@ -14,9 +14,8 @@ export const Sidebar = () => {
     const [active, setActive] = useState<boolean>(false);
 
     const onClickCreateChat = () => {
-        navigate("chat")
+        navigate("/chat")
     }
-
 
     return (
         <aside className={classNames("sidebar", active && "active")}>

@@ -1,12 +1,19 @@
 import Planet from "assets/planet.svg";
 import "./cardPromt.scss";
 
-export const CardPromt: React.FC = () => {
+interface ICardPropmtProps {
+    text: string
+}
+
+export const CardPromt: React.FC<ICardPropmtProps> = ({ text }) => {
+    const onClickCardPromt = () => {
+        
+    }
     return (
-        <button>
+        <button onClick={onClickCardPromt}>
             <div className="card-promt">
                 <p className="card-promt__text">
-                    Suggest beaches to visit in a city, including details
+                    {text}
                 </p>
                 <div className="card-promt__imgContainer">
                     <img className="card-promt__img" src={Planet} alt="" />

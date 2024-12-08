@@ -8,16 +8,16 @@ export const MainChat: React.FC = () => {
             <TitleName />
             <ul className="main-chat__list">
                 <li className="main-chat__list-item">
-                    <CardPromt />
+                    <CardPromt text="Suggest beaches to visit in a city, including details"/>
                 </li>
                 <li className="main-chat__list-item">
-                    <CardPromt />
+                    <CardPromt text="Suggest beaches to visit in a country, including details"/>
                 </li>
                 <li className="main-chat__list-item">
-                    <CardPromt />
+                    <CardPromt text="Suggest beaches to visit in a planet, including details"/>
                 </li>
                 <li className="main-chat__list-item">
-                    <CardPromt />
+                    <CardPromt text="Suggest beaches to visit in a home, including details"/>
                 </li>
             </ul>
         </main>

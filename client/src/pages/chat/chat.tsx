@@ -8,22 +8,22 @@ import { addNewMessage } from "store/messages/messagesSlice"
 import { useAppDispatch } from "hooks/useAppDispatch"
 import { INewMessage } from "store/messages/messagesSlice"
 import { generateTextAi } from "store/messages/messagesSlice"
-import { useRef, useEffect } from "react"
+import { useRef } from "react"
+import { useParams } from "react-router"
+import { useScroll } from "hooks/useScroll"
 import "./chat.scss"
 
 export const Chat = () => {
+    // получаем id чата из пути
+    const { id } = useParams();
     const dispacth = useAppDispatch();
     const [textPromt, setTextPromt] = useState<string>("");
     const loading = useAppSelector((state) => state.messages.generateText.loading);
     const messages = useAppSelector((state) => state.messages.messages)
     const bottomRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (bottomRef.current) {
-            bottomRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [messages]);
-
+    // хук для скролла вниз
+    useScroll(bottomRef, messages);
+    
     const changeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTextPromt(e.target.value);
     };
@@ -51,8 +51,8 @@ export const Chat = () => {
 
         // вызывае  м асинхронную функцю для генерации текста
         await dispacth(generateTextAi(newAiMessage));
-
     };
+
     return (
         <div className="chat-page">
             <Sidebar />
