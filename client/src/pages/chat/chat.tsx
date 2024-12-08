@@ -8,6 +8,7 @@ import { addNewMessage } from "store/messages/messagesSlice"
 import { useAppDispatch } from "hooks/useAppDispatch"
 import { INewMessage } from "store/messages/messagesSlice"
 import { generateTextAi } from "store/messages/messagesSlice"
+import { useRef, useEffect } from "react"
 import "./chat.scss"
 
 export const Chat = () => {
@@ -15,6 +16,13 @@ export const Chat = () => {
     const [textPromt, setTextPromt] = useState<string>("");
     const loading = useAppSelector((state) => state.messages.generateText.loading);
     const messages = useAppSelector((state) => state.messages.messages)
+    const bottomRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (bottomRef.current) {
+            bottomRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [messages]);
 
     const changeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTextPromt(e.target.value);
@@ -41,7 +49,7 @@ export const Chat = () => {
             name: "ai"
         }
 
-        // вызываем асинхронную функцю для генерации текста
+        // вызывае  м асинхронную функцю для генерации текста
         await dispacth(generateTextAi(newAiMessage));
 
     };
@@ -50,6 +58,7 @@ export const Chat = () => {
             <Sidebar />
             <ChatContainer>
                 <MessagesList messages={messages}/>
+                <div ref={bottomRef}></div>
                 <PromtInput
                     text={textPromt}
                     onChange={changeText}

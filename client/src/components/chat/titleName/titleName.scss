@@ -16,3 +16,13 @@
         font-weight: 500;
     }
 }
+
+
+@media (max-width: 1200px) {
+    .title-name {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}

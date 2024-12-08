@@ -6,6 +6,8 @@
     border-radius: 16px;
     background: var(--background-third-color);
     transition: background 0.3s ease-in-out;
+    justify-content: center;
+    align-items: center;
     &__img {
         width: 16px;
         height: 16px;

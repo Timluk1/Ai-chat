@@ -1,10 +1,15 @@
 .recent-chats {
     &__title {
         font-weight: 700;
+        opacity: 0;
         font-size: 14px;
         line-height: 20px;
         letter-spacing: 0.1px;
         margin-bottom: 24px;
+        transition: all 0.3s ease-in-out;
+        &.active {
+            opacity: 1;
+        }
     }
     &__list {
         display: flex;

@@ -37,12 +37,15 @@
 
     // Списки
     ul {
-        margin-left: 20px;
+        margin-left: 40px;
         margin-bottom: 15px;
     }
 
     li {
         margin-bottom: 20px;
+    }
+    strong {
+        margin-top: 100px;
     }
 
     // Ссылки
@@ -62,7 +65,6 @@
         margin-bottom: 20px;
         overflow-x: auto;
         color: #f8f8f2;
-        font-family: 'Courier New', Courier, monospace;
     }
 
     code {

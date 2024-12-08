@@ -1,11 +1,17 @@
 .chat-container {
     position: relative;
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
+    justify-content: space-between;
     max-width: 1052px;
     width: 100%;
     padding-top: 110px;
     margin: 0 auto;
     overflow-y: auto;
+}
+
+@media (max-width: 600px) {
+    .chat-container {
+        justify-content: flex-end;
+    }
 }

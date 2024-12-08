@@ -21,9 +21,7 @@ export const MessagesList: React.FC<IMessagesListProps> = ({ messages }) => {
                             )}
                         >
                             {from === "ai" ? (
-                                <div className="ai-layout">
-                                    <AiAnswer textMarkdown={message} />
-                                </div>
+                                <AiAnswer textMarkdown={message} />
                             ) : (
                                 <UserMessage text={message} />
                             )}

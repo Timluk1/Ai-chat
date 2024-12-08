@@ -59,7 +59,7 @@ export const Home: React.FC = () => {
         // вызываем асинхронную функцю для генерации текста
          await dispacth(generateTextAi(newAiMessage));
 
-        navigate("/chat/" + chatId);
+        navigate("/chat/" + "1");
     };
 
     return (

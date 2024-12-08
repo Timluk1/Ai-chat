@@ -6,6 +6,7 @@ import Help from "assets/help.svg";
 import { RecentChats } from "../recentChats";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import classNames from "classnames";
 import "./sidebar.scss";
 
 export const Sidebar = () => {
@@ -18,7 +19,7 @@ export const Sidebar = () => {
 
 
     return (
-        <aside className="sidebar">
+        <aside className={classNames("sidebar", active && "active")}>
             <div className="sidebar__buttons">
                 <BurgerMenu
                     isSidebarOpen={active}
@@ -29,28 +30,28 @@ export const Sidebar = () => {
                     active={active}
                     onClick={onClickCreateChat}
                 />
-                {active && <RecentChats />}
+                <RecentChats active={active}/>
             </div>
             <div>
                 <ul className="sidebar__list">
-                    <li className="sidebar__list-item">
-                        <button>
-                            <img src={Help} alt="Help" />
-                            {active && <p>Help</p>}
-                        </button>
-                    </li>
-                    <li className="sidebar__list-item">
-                        <button>
-                            <img src={History} alt="Activity" />
-                            {active && <p>Activity</p>}
-                        </button>
-                    </li>
-                    <li className="sidebar__list-item">
-                        <button>
+                    <button>
+                        <li className="sidebar__list-item">
+                            <img src={Help} alt="Help" className={classNames("img-icon", active && "active")} />
+                            <p className={classNames("sidebar__text", active && "active")}>Help</p>
+                        </li>
+                    </button>
+                    <button>
+                        <li className="sidebar__list-item">
+                            <img src={History} alt="Activity" className={classNames("img-icon", active && "active")} />
+                            <p className={classNames("sidebar__text", active && "active")}>Activity</p>
+                        </li>
+                    </button>
+                    <button>
+                        <li className="sidebar__list-item">
                             <img src={Settings} alt="Settings" />
-                            {active && <p>Settings</p>}
-                        </button>
-                    </li>
+                            <p className={classNames("sidebar__text", active && "active")}>Settings</p>
+                        </li>
+                    </button>
                 </ul>
             </div>
         </aside>

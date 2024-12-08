@@ -34,7 +34,10 @@ export default function CreateChat({
                     src={CreateChatIcon}
                     alt="Create chat"
                 />
-                {active && <p className="create-chat__text">New chat</p>}
+                {active
+                    &&
+                    <p className="create-chat__text">New chat</p>
+                }
             </div>
         </button>
     );
