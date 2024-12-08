@@ -36,13 +36,13 @@ export const Sidebar = () => {
                 <ul className="sidebar__list">
                     <button>
                         <li className="sidebar__list-item">
-                            <img src={Help} alt="Help" className={classNames("img-icon", active && "active")} />
+                            <img src={Help} alt="Help" />
                             <p className={classNames("sidebar__text", active && "active")}>Help</p>
                         </li>
                     </button>
                     <button>
                         <li className="sidebar__list-item">
-                            <img src={History} alt="Activity" className={classNames("img-icon", active && "active")} />
+                            <img src={History} alt="Activity" />
                             <p className={classNames("sidebar__text", active && "active")}>Activity</p>
                         </li>
                     </button>
