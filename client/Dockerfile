@@ -9,7 +9,6 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Этап производства
 FROM nginx:alpine AS production
 
 # Копируем скомпилированные файлы из этапа сборки в Nginx
