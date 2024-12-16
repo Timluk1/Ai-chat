@@ -19,7 +19,7 @@ export const useGenerateText = (textPromt: string): IGenerateTextReturn => {
                 chatId: id,
                 from: "user",
                 message: textPromt,
-                name: "user"
+                name: textPromt
             }
             //  добавляем сообщение пользователя
             dispatch(addNewMessage(newUserMessage))
@@ -29,7 +29,7 @@ export const useGenerateText = (textPromt: string): IGenerateTextReturn => {
                 chatId: id,
                 from: "user",
                 message: textPromt,
-                name: "ai"
+                name: textPromt
             }
             // вызываем асинхронную функцю для генерации текста
             await dispatch(generateTextAi(newAiMessage));

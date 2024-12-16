@@ -17,8 +17,8 @@ export const RecentChats: React.FC<IRecentChatsProps> = ({ active }) => {
                 {active && (
                     <ul className="recent-chats__list">
                         {chatsNames.map(({ chatName, chatId}) => (
-                            <li key={chatId} className="recent-chats__list-item">
-                                <RecentChat text={chatName} />
+                            <li key={chatId} className="recent-chats__list-item" >
+                                <RecentChat text={chatName} chatId={chatId}/>
                             </li>
                         ))}
                     </ul>

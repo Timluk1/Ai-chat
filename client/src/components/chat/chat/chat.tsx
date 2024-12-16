@@ -17,7 +17,6 @@ interface IChatProps {
 
 export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
     const navigate = useNavigate();
-    console.log("chatId", chatId);
     const chat = useAppSelector(state => selectMessages(state, chatId || ""))?.[0] || { messages: [] };
     const loading = useAppSelector((state) => state.messages.generateText.loading);
     const bottomRef = useRef<HTMLDivElement>(null);

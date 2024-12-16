@@ -48,11 +48,9 @@ export const messagesSlice = createSliceWithThunks({
     initialState,
     reducers: (create) => ({
         addNewMessage: create.reducer((state, action: PayloadAction<INewMessage>) => {
-            console.log("ADD")
             const { chatId, name, message, from } = action.payload;
             const newMessage = { id: nanoid(), name, message, from};
             const chat = state.messages.find((chat) => chat.chatId === chatId)
-            console.log("ADD")
             if (chat) {
                 chat.messages.push(newMessage);
             } else {
