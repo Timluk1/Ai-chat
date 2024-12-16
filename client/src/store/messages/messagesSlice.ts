@@ -4,29 +4,43 @@ import type { INewMessage } from "models/message";
 import { nanoid } from "nanoid";
 import { AiApiInstance } from "api/aiApi";
 
+// Интерфейсы для работы с генерацией текста
 interface IGenerateText {
     error: string;
     loading: boolean;
 }
 
-interface IMessageState {
-    idChat: string;
+// Интерфейс для чата
+interface IChat {
+    chatId: string;
+    chatName: string;
     messages: IMessage[];
+}
+
+// Интерфейс для возврата сообщения
+interface IAsyncMessagesReturn extends IMessage {
+    chatId: string;
+}
+
+// Интерфейс для хранения состояния сообщений
+interface IMessageState {
     generateText: IGenerateText;
+    messages: IChat[];
 }
 
 const createSliceWithThunks = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 });
 
+
 const initialState: IMessageState = {
-    idChat: "1",
-    messages: [],
     generateText: {
         error: "",
         loading: false,
     },
+    messages: []
 };
+
 
 // Слайс для добавления сообщений и генерации текста AI
 export const messagesSlice = createSliceWithThunks({
@@ -34,28 +48,36 @@ export const messagesSlice = createSliceWithThunks({
     initialState,
     reducers: (create) => ({
         addNewMessage: create.reducer((state, action: PayloadAction<INewMessage>) => {
-            state.messages.push({
-                id: nanoid(),
-                ...action.payload,
-            });
+            console.log("ADD")
+            const { chatId, name, message, from } = action.payload;
+            const newMessage = { id: nanoid(), name, message, from};
+            const chat = state.messages.find((chat) => chat.chatId === chatId)
+            console.log("ADD")
+            if (chat) {
+                chat.messages.push(newMessage);
+            } else {
+                state.messages.push({ chatId, chatName: name, messages: [newMessage] });
+            }
+            console.log(state.messages)
         }),
-        generateTextAi: create.asyncThunk<IMessage, INewMessage, { rejectValue: string }>(
+
+        generateTextAi: create.asyncThunk<IAsyncMessagesReturn, INewMessage, { rejectValue: string }>(
             // async thunk для генерации текста AI
-            async ({ name, message, chat}, { rejectWithValue }) => {
+            async ({ name, message, chatId }, { rejectWithValue }) => {
                 try {
                     // Генерация текста
                     const aiAnswer = await AiApiInstance.generateText(message);
-
-                    // Формирование нового сообщения для хранения
-                    return {
+                    const ans: IAsyncMessagesReturn = {
                         id: nanoid(),
-                        chat: chat, 
+                        chatId: chatId,
                         message: aiAnswer,
                         from: "ai", // Здесь можно явно указать, что ответ от AI
                         name,
                     };
+                    // Формирование нового сообщения для хранения
+                    return ans;
                 } catch (error) {
-                    console.error(error);
+                    console.error(error)
                     return rejectWithValue("Ошибка при генерации текста");
                 }
             },
@@ -63,10 +85,10 @@ export const messagesSlice = createSliceWithThunks({
                 pending: (state) => {
                     state.generateText.loading = true;
                 },
-                fulfilled: (state, action: PayloadAction<IMessage>) => {
+                fulfilled: (state, action: PayloadAction<IAsyncMessagesReturn>) => {
                     // Добавляем сообщение только в случае успешного выполнения
                     state.generateText.loading = false;
-                    state.messages.push(action.payload);
+                    state.messages.find((chat) => chat.chatId === action.payload.chatId)?.messages.push(action.payload);
                 },
                 rejected: (state, action) => {
                     state.generateText.loading = false;

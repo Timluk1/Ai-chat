@@ -1,25 +1,22 @@
 import { useAppDispatch } from "hooks/useAppDispatch"
 import { INewMessage } from "models/message"
-import { useParams } from "react-router"
 import { generateTextAi, addNewMessage } from "store/messages/messagesSlice"
-import { useAppSelector } from "./useAppSelector"
+import { useCallback } from "react"
 
 interface IGenerateTextReturn {
-    generateText: () => void
+    generateText: (id: string) => void
 }
 
 // хук для генерации текста ai
 export const useGenerateText = (textPromt: string): IGenerateTextReturn => {
-    const { id } = useParams();
     const dispatch = useAppDispatch();
-    const chat = useAppSelector((state) => state.chat.chats.filter(({ chatId }) => chatId === id))[0]
-    const generateText = async () => {
+    const generateTextFunc = async (id: string) => {
         // проверка наличия промта
         if (textPromt === "") return;
-        if (chat) {
+        if (id) {
             // данные для добавления в список сообщений
             const newUserMessage: INewMessage = {
-                chatId: chat,
+                chatId: id,
                 from: "user",
                 message: textPromt,
                 name: "user"
@@ -29,7 +26,7 @@ export const useGenerateText = (textPromt: string): IGenerateTextReturn => {
 
             // данные для добавления ответа ai и получения ответа
             const newAiMessage: INewMessage = {
-                chatId: chat,
+                chatId: id,
                 from: "user",
                 message: textPromt,
                 name: "ai"
@@ -39,6 +36,7 @@ export const useGenerateText = (textPromt: string): IGenerateTextReturn => {
         }
 
     };
+    const generateText = useCallback(generateTextFunc, [dispatch, textPromt]);
 
     return { generateText }
 }

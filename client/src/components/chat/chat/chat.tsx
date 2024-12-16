@@ -6,23 +6,20 @@ import { useRef, useState } from "react"
 import { useGenerateText } from "hooks/useGenerateText"
 import { useScroll } from "hooks/useScroll"
 import { MainChat } from "../mainChat/mainChat"
-import { useNavigate, useParams } from "react-router"
-import { useAppDispatch } from "hooks/useAppDispatch"
-import { nanoid } from "nanoid"
-import { createChat } from "store/chats/chatsSlice"
+import { useNavigate } from "react-router"
+import { selectMessages } from "store/messages/selectors"
 import "./chat.scss"
 
 interface IChatProps {
-    typePage: "home" | "chat"
+    typePage: "home" | "chat";
+    chatId: string;
 }
 
-export const Chat: React.FC<IChatProps> = ({ typePage }) => {
-    const { id } = useParams();
+export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-    const messages = useAppSelector((state) => state.messages.messages.filter(({ chat }) => chat.chatId === id));
+    console.log("chatId", chatId);
+    const chat = useAppSelector(state => selectMessages(state, chatId || ""))?.[0] || { messages: [] };
     const loading = useAppSelector((state) => state.messages.generateText.loading);
-
     const bottomRef = useRef<HTMLDivElement>(null);
 
     const [textPromt, setTextPromt] = useState<string>("");
@@ -34,25 +31,19 @@ export const Chat: React.FC<IChatProps> = ({ typePage }) => {
     };
 
     const onClickGenerateText = () => {
-        generateText();
+        generateText(chatId);
         setTextPromt("");
         // если посылаем первое сообщение с главной страницы, то нужно создать чат
         if (typePage === "home") {
-            const chatId = nanoid();
-            const newChatPayload = {
-                chatId,
-                name: textPromt.slice(0, 18)
-            }
-            dispatch(createChat(newChatPayload))
             navigate("/chat/" + chatId)
         }
     }
 
-    useScroll(bottomRef, messages);
+    useScroll(bottomRef, chat.messages);
 
     return (
         <ChatContainer>
-            {typePage === "chat" && <MessagesList messages={messages}/>}
+            {typePage === "chat" && <MessagesList messages={chat.messages} />}
             {typePage === "home" && <MainChat />}
             <div ref={bottomRef}></div>
             <PromtInput
