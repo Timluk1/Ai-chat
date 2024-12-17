@@ -1,6 +1,6 @@
 import { ChatContextProvider } from "context/chatContext";
-import { BrowserRouter } from "react-router";
 import { Provider } from "react-redux";
+import { HashRouter } from "react-router";
 import { store } from "store/store";
 
 interface LayoutProviderProps {
@@ -10,13 +10,13 @@ interface LayoutProviderProps {
 export const LayoutProvider: React.FC<LayoutProviderProps> = ({ children }) => {
     return (
         <>
-            <BrowserRouter>
+            <HashRouter>
                 <Provider store={store}>
                     <ChatContextProvider>
                         {children}
                     </ChatContextProvider>
                 </Provider>
-            </BrowserRouter>
+            </HashRouter>
         </>
     )
 }

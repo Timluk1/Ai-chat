@@ -1,10 +1,13 @@
 {
     "name": "ai-chat",
+    "homepage": "https://Timluk1.github.io/Ai-chat",
     "private": true,
     "version": "0.0.0",
     "type": "module",
     "scripts": {
         "dev": "vite",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
         "format": "prettier --write .",
@@ -14,6 +17,7 @@
         "@google/generative-ai": "^0.21.0",
         "@reduxjs/toolkit": "^2.3.0",
         "classnames": "^2.5.1",
+        "gh-pages": "^6.2.0",
         "motion": "^11.12.0",
         "nanoid": "^5.0.9",
         "prettier": "^3.4.1",
