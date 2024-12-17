@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { SendIcon } from "components/sidebar/sendIcon";
+import { SendIcon } from "components/chat/sendIcon";
 import "./promtInput.scss";
 
 interface IPromtInputProps {
@@ -20,7 +20,7 @@ export const PromtInput: React.FC<IPromtInputProps> = ({ text, textareaRef, load
         }
     };
 
-    useEffect(() => {
+    useEffect(() => { 
         adjustHeight();
     }, []);
 
@@ -29,7 +29,7 @@ export const PromtInput: React.FC<IPromtInputProps> = ({ text, textareaRef, load
             <div className="promt-input">
                 <textarea
                     ref={textareaRef}
-                    value={text.trim()}
+                    value={text.trim().length === 0 ? "" : text}
                     onChange={onChange}
                     className="promt-input__input"
                     placeholder="Enter a prompt here"
@@ -37,7 +37,7 @@ export const PromtInput: React.FC<IPromtInputProps> = ({ text, textareaRef, load
                     onKeyDown={(e) => e.key === "Enter" && onClickGenerateText()}
                 />
                 <ul className="promt-input__buttons buttons-list">
-                    <SendIcon loading={loading} disabled={text === ""} onClick={onClickGenerateText} />
+                    <SendIcon loading={loading} disabled={text.trim().length === 0} onClick={onClickGenerateText} />
                 </ul>
             </div>
         </div>

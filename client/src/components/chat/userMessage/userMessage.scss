@@ -39,7 +39,7 @@
 
     &__text {
         margin: 0;
-        font-size: 16px;
+        font-size: 1rem;
         line-height: 1.5;
         color: var(--text-third-color);
 
@@ -49,4 +49,13 @@
             -webkit-text-fill-color: transparent;
         }
     }
+}
+
+
+@media (max-width: 480px) {
+    .user-message {
+        &__text {
+            font-size: 0.85rem;
+        }  
+    }  
 }

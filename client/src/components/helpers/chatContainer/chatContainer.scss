@@ -27,8 +27,8 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .chat-container {
-        justify-content: flex-end;
+        height: 100vh;   
     }
-}
+}   

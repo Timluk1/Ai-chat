@@ -2,7 +2,7 @@ import { MessagesList } from "components/chat/messagesList"
 import { ChatContainer } from "components/helpers/chatContainer"
 import { PromtInput } from "components/chat/promtInput"
 import { useAppSelector } from "hooks/useAppSelector"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { useGenerateText } from "hooks/useGenerateText"
 import { useScroll } from "hooks/useScroll"
 import { MainChat } from "../mainChat/mainChat"
@@ -23,18 +23,24 @@ export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
     const bottomRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-    console.log(useChatContext())
-    const [textPromt, setTextPromt] = useState<string>("");
+    // получаем текст и данные о чате из контекста чата
+    const { inputPromt, setInputPromt } = useChatContext();
 
-    const { generateText } = useGenerateText(textPromt);
+    // получаем функцию генерации текста из хука
+    const { generateText } = useGenerateText(inputPromt);
 
     const changeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setTextPromt(e.target.value);
+        setInputPromt(e.target.value);
     };
 
     const onClickGenerateText = () => {
-        generateText(chatId);
-        setTextPromt("");
+        const generateTextParametrs = {
+            textPromt: inputPromt,
+            chatId
+        }
+        
+        generateText(generateTextParametrs);
+        setInputPromt("");
         if (textareaRef.current) {
             textareaRef.current.value = ""; // Сбрасываем значение напрямую (на случай некорректного обновления React state)
             textareaRef.current.focus(); // Возвращаем фокус
@@ -54,7 +60,7 @@ export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
             {typePage === "home" && <MainChat />}
             <div ref={bottomRef}></div>
             <PromtInput
-                text={textPromt}
+                text={inputPromt}
                 textareaRef={textareaRef}
                 onChange={changeText}
                 onClickGenerateText={onClickGenerateText}

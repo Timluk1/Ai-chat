@@ -4,7 +4,7 @@ interface IChatContextProviderProps {
     children: ReactNode;
 }
 
-interface IChatContext {
+export interface IChatContext {
     chatId: string;
     inputPromt: string;
     setChatId: (id: string) => void;

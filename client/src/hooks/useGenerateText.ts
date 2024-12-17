@@ -3,20 +3,25 @@ import { INewMessage } from "models/message"
 import { generateTextAi, addNewMessage } from "store/messages/messagesSlice"
 import { useCallback } from "react"
 
+interface IGenerateTextParametrs {
+    textPromt: string;
+    chatId: string;
+}
+
 interface IGenerateTextReturn {
-    generateText: (id: string) => void
+    generateText: (parametrs: IGenerateTextParametrs) => void
 }
 
 // хук для генерации текста ai
 export const useGenerateText = (textPromt: string): IGenerateTextReturn => {
     const dispatch = useAppDispatch();
-    const generateTextFunc = async (id: string) => {
+    const generateTextFunc = async ({ textPromt, chatId }: IGenerateTextParametrs ) => {
         // проверка наличия промта
         if (!textPromt.trim()) return;
-        if (id) {
+        if (chatId) {
             // данные для добавления в список сообщений
             const newUserMessage: INewMessage = {
-                chatId: id,
+                chatId,
                 from: "user",
                 message: textPromt,
                 name: textPromt
@@ -26,7 +31,7 @@ export const useGenerateText = (textPromt: string): IGenerateTextReturn => {
 
             // данные для добавления ответа ai и получения ответа
             const newAiMessage: INewMessage = {
-                chatId: id,
+                chatId,
                 from: "user",
                 message: textPromt,
                 name: textPromt
