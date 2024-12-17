@@ -12,7 +12,7 @@ export const useGenerateText = (textPromt: string): IGenerateTextReturn => {
     const dispatch = useAppDispatch();
     const generateTextFunc = async (id: string) => {
         // проверка наличия промта
-        if (textPromt === "") return;
+        if (!textPromt.trim()) return;
         if (id) {
             // данные для добавления в список сообщений
             const newUserMessage: INewMessage = {

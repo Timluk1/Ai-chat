@@ -1,16 +1,16 @@
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import { SendIcon } from "components/sidebar/sendIcon";
 import "./promtInput.scss";
 
 interface IPromtInputProps {
     text: string;
+    textareaRef: React.RefObject<HTMLTextAreaElement>;
     loading: boolean;
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     onClickGenerateText: () => void;
 }
 
-export const PromtInput: React.FC<IPromtInputProps> = ({ text, loading, onChange, onClickGenerateText}) => {
-    const textareaRef = useRef<HTMLTextAreaElement>(null);
+export const PromtInput: React.FC<IPromtInputProps> = ({ text, textareaRef, loading, onChange, onClickGenerateText}) => {
 
     // Функция для изменения высоты
     const adjustHeight = () => {
@@ -24,18 +24,17 @@ export const PromtInput: React.FC<IPromtInputProps> = ({ text, loading, onChange
         adjustHeight();
     }, []);
 
-
     return (
         <div className="promt-input-layout">
             <div className="promt-input">
                 <textarea
                     ref={textareaRef}
-                    value={text}
+                    value={text.trim()}
                     onChange={onChange}
                     className="promt-input__input"
                     placeholder="Enter a prompt here"
                     onInput={adjustHeight}
-                    onKeyDown={(e) => e.key === "Enter" && onClickGenerateText}
+                    onKeyDown={(e) => e.key === "Enter" && onClickGenerateText()}
                 />
                 <ul className="promt-input__buttons buttons-list">
                     <SendIcon loading={loading} disabled={text === ""} onClick={onClickGenerateText} />
@@ -43,4 +42,4 @@ export const PromtInput: React.FC<IPromtInputProps> = ({ text, loading, onChange
             </div>
         </div>
     );
-}
+};

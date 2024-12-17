@@ -8,6 +8,7 @@ import { useScroll } from "hooks/useScroll"
 import { MainChat } from "../mainChat/mainChat"
 import { useNavigate } from "react-router"
 import { selectMessages } from "store/messages/selectors"
+import { useChatContext } from "hooks/useChatContext"
 import "./chat.scss"
 
 interface IChatProps {
@@ -20,7 +21,9 @@ export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
     const chat = useAppSelector(state => selectMessages(state, chatId || ""))?.[0] || { messages: [] };
     const loading = useAppSelector((state) => state.messages.generateText.loading);
     const bottomRef = useRef<HTMLDivElement>(null);
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+    console.log(useChatContext())
     const [textPromt, setTextPromt] = useState<string>("");
 
     const { generateText } = useGenerateText(textPromt);
@@ -32,6 +35,11 @@ export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
     const onClickGenerateText = () => {
         generateText(chatId);
         setTextPromt("");
+        if (textareaRef.current) {
+            textareaRef.current.value = ""; // Сбрасываем значение напрямую (на случай некорректного обновления React state)
+            textareaRef.current.focus(); // Возвращаем фокус
+            textareaRef.current.setSelectionRange(0, 0); // Сбрасываем позицию курсора на начало
+        }
         // если посылаем первое сообщение с главной страницы, то нужно создать чат
         if (typePage === "home") {
             navigate("/chat/" + chatId)
@@ -47,6 +55,7 @@ export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
             <div ref={bottomRef}></div>
             <PromtInput
                 text={textPromt}
+                textareaRef={textareaRef}
                 onChange={changeText}
                 onClickGenerateText={onClickGenerateText}
                 loading={loading}

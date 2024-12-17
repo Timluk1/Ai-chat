@@ -1,4 +1,5 @@
 import Planet from "assets/planet.svg";
+import { useGenerateText } from "hooks/useGenerateText";
 import "./cardPromt.scss";
 
 interface ICardPropmtProps {
@@ -6,8 +7,10 @@ interface ICardPropmtProps {
 }
 
 export const CardPromt: React.FC<ICardPropmtProps> = ({ text }) => {
+    const { generateText } = useGenerateText(text)
     const onClickCardPromt = () => {
-        
+        generateText()
+
     }
     return (
         <button onClick={onClickCardPromt}>
