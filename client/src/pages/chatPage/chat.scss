@@ -5,6 +5,7 @@
 
 @media (max-width: 768px) {
     .chat-page {
+        position: relative;
         justify-content: space-between;
         flex-direction: column;
     }

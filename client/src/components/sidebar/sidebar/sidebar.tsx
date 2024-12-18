@@ -1,5 +1,5 @@
 import { BurgerMenu } from "components/helpers/burgerMenu";
-import CreateChat from "components/helpers/createChat/createChat";
+import { CreateChat } from "components/helpers/createChat/createChat";
 import Settings from "assets/settings.svg";
 import History from "assets/history.svg";
 import Help from "assets/help.svg";

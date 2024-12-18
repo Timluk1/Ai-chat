@@ -3,13 +3,16 @@ import { Chat } from "components/chat/chat";
 import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import { useChatContext } from "hooks/useChatContext";
-import { isMobile } from "react-device-detect";
 import { MobileHeader } from "components/chat/mobileHeader/mobileHeader";
+import { useCheckMobile } from "hooks/useCheckMobile";
+import { MobileSidebar } from "components/sidebar/mobileSidebar/mobileSidebar";
 import "./home.scss";
 
 export const HomePage: React.FC = () => {
-    const id = nanoid();
     const { setChatId } = useChatContext();
+    const isMobile = useCheckMobile();
+
+    const id = nanoid();
 
     useEffect(() => {  
         setChatId(id)
@@ -20,7 +23,10 @@ export const HomePage: React.FC = () => {
             {
                 isMobile
                 ?
-                <MobileHeader />
+                <>
+                    <MobileHeader />
+                    <MobileSidebar />
+                </>
                 :
                 <Sidebar />
             }

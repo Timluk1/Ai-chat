@@ -9,11 +9,11 @@ interface ICreateChatProps {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function CreateChat({
+export const CreateChat: React.FC<ICreateChatProps> = ({
     className,
     active,
     onClick,
-}: ICreateChatProps) {
+}: ICreateChatProps) => {
     return (
         <button
             onClick={onClick}

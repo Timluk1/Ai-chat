@@ -3,13 +3,15 @@ import { Chat } from "components/chat/chat"
 import { useParams } from "react-router"
 import { useChatContext } from "hooks/useChatContext"
 import { useEffect } from "react"
-import { isMobile } from "react-device-detect"
 import { MobileHeader } from "components/chat/mobileHeader/mobileHeader"
+import { useCheckMobile } from "hooks/useCheckMobile"
+import { MobileSidebar } from "components/sidebar/mobileSidebar/mobileSidebar"
 import "./chat.scss"
 
 export const ChatPage: React.FC = () => {
     const { id } = useParams();
     const { setChatId } = useChatContext();
+    const isMobile = useCheckMobile();
 
     useEffect(() => {
         setChatId(id ? id : "")
@@ -18,12 +20,15 @@ export const ChatPage: React.FC = () => {
     return (
         <div className="chat-page">
             {isMobile
-            ?
-            <MobileHeader />
-            :
-            <Sidebar /> 
+                ?
+                <>
+                    <MobileHeader />
+                    <MobileSidebar />
+                </>
+                :
+                <Sidebar />
             }
-            <Chat typePage="chat" chatId={id ? id : ""}/>
+            <Chat typePage="chat" chatId={id ? id : ""} />
         </div>
     )
 }
