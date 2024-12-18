@@ -3,9 +3,8 @@ import { Chat } from "components/chat/chat";
 import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import { useChatContext } from "hooks/useChatContext";
-import { MobileHeader } from "components/chat/mobileHeader/mobileHeader";
 import { useCheckMobile } from "hooks/useCheckMobile";
-import { MobileSidebar } from "components/sidebar/mobileSidebar/mobileSidebar";
+import { NavMobile } from "components/mobile/navMobile/navMobile";
 import "./home.scss";
 
 export const HomePage: React.FC = () => {
@@ -16,17 +15,14 @@ export const HomePage: React.FC = () => {
 
     useEffect(() => {  
         setChatId(id)
-    }, [])
+    }, []);
     
     return (
         <div className="home-page">
             {
                 isMobile
                 ?
-                <>
-                    <MobileHeader />
-                    <MobileSidebar />
-                </>
+                <NavMobile />
                 :
                 <Sidebar />
             }

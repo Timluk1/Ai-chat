@@ -1,11 +1,15 @@
 import Menu from "assets/menu.svg"
 import "./modileHeader.scss"
 
-export const MobileHeader = () => {
+interface IMobileHeaderProps {
+    onMenuClick: () => void;
+}
+
+export const MobileHeader: React.FC<IMobileHeaderProps> = ({ onMenuClick }) => {
     return (
         <header className="header">
             <div className="header__left">
-                <button className="menu-button">
+                <button className="menu-button" onClick={onMenuClick}>
                     <img src={Menu} alt="Menu" />
                 </button>
                 <div className="header__title">

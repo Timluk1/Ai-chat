@@ -3,9 +3,8 @@ import { Chat } from "components/chat/chat"
 import { useParams } from "react-router"
 import { useChatContext } from "hooks/useChatContext"
 import { useEffect } from "react"
-import { MobileHeader } from "components/chat/mobileHeader/mobileHeader"
 import { useCheckMobile } from "hooks/useCheckMobile"
-import { MobileSidebar } from "components/sidebar/mobileSidebar/mobileSidebar"
+import { NavMobile } from "components/mobile/navMobile/navMobile"
 import "./chat.scss"
 
 export const ChatPage: React.FC = () => {
@@ -21,10 +20,7 @@ export const ChatPage: React.FC = () => {
         <div className="chat-page">
             {isMobile
                 ?
-                <>
-                    <MobileHeader />
-                    <MobileSidebar />
-                </>
+                <NavMobile />
                 :
                 <Sidebar />
             }
