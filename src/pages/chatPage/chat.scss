@@ -1,6 +1,7 @@
 .chat-page {
     display: flex;
     height: 100vh;
+    position: relative;
 }
 
 @media (max-width: 768px) {
