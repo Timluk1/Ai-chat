@@ -27,3 +27,9 @@
         background: var(--background-third-color); 
     }
 }
+
+@media (max-width: 768px) {
+    .chat-container {
+        padding: 110px 20px 160px 20px;
+    }
+}   
