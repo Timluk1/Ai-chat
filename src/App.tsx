@@ -1,6 +1,6 @@
 import { HomePage } from "pages/homePage";
 import { ChatPage } from "pages/chatPage";
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 
 const App: React.FC = () => {
     return (
@@ -8,6 +8,7 @@ const App: React.FC = () => {
             <Routes>
                 <Route path="/chat" element={<HomePage />}/>
                 <Route path="/chat/:id" element={<ChatPage />}/>
+                <Route path="/*" element={<Navigate to="/chat"/>}/>
             </Routes>
         </>
     );
