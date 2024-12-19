@@ -5,6 +5,7 @@ class AiApi {
     private genAi: GoogleGenerativeAI;
     private model: GenerativeModel;
     constructor() {
+        console.log(import.meta.env.VITE_GOOGLE_API_KEY)
         this.genAi = new GoogleGenerativeAI(
             import.meta.env.VITE_GOOGLE_API_KEY,
         );
