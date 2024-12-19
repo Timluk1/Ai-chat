@@ -29,6 +29,7 @@ export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
     // получаем функцию генерации текста из хука
     const { generateText } = useGenerateText(inputPromt);
 
+
     const changeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInputPromt(e.target.value);
     };

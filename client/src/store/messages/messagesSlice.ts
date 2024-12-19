@@ -58,6 +58,10 @@ export const messagesSlice = createSliceWithThunks({
             }
         }),
 
+        cleanError: create.reducer((state) => {
+            state.generateText.error = "";
+        }),
+
         generateTextAi: create.asyncThunk<IAsyncMessagesReturn, INewMessage, { rejectValue: string }>(
             // async thunk для генерации текста AI
             async ({ name, message, chatId }, { rejectWithValue }) => {
@@ -98,5 +102,5 @@ export const messagesSlice = createSliceWithThunks({
     }),
 });
 
-export const { addNewMessage, generateTextAi } = messagesSlice.actions;
+export const { addNewMessage, cleanError, generateTextAi } = messagesSlice.actions;
 export default messagesSlice.reducer;

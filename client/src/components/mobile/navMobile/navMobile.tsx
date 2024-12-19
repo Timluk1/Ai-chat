@@ -1,23 +1,19 @@
 import { MobileHeader } from "../mobileHeader/mobileHeader"
 import { MobileSidebar } from "../mobileSidebar/mobileSidebar"
-import { useState } from "react"
+import { useSidebarContext } from "hooks/useSidebarContext"
 import "./navMobile.scss"
 
 export const NavMobile = () => {
-    const [isSidebarActive, setIsSidebarActive] = useState<boolean>(false);
-
-    const onMenuClick = () => {
-        setIsSidebarActive(!isSidebarActive)
-    }
+    const { isActive, toggleSidebar } = useSidebarContext();
 
     return (
         <div>
             <MobileHeader 
-                onMenuClick={onMenuClick}
+                onMenuClick={toggleSidebar}
             />
             <MobileSidebar 
-                isSidebarActive={isSidebarActive}
-                onMenuClick={onMenuClick}
+                isSidebarActive={isActive}
+                onMenuClick={toggleSidebar}
             />
         </div>
     )

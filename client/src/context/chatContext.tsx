@@ -3,7 +3,6 @@ import { createContext, ReactNode, useState } from "react";
 interface IChatContextProviderProps {
     children: ReactNode;
 }
-
 export interface IChatContext {
     chatId: string;
     inputPromt: string;

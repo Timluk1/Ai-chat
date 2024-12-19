@@ -1,6 +1,7 @@
 import { ChatContextProvider } from "context/chatContext";
+import { SidebarContextProvider } from "context/sidebarContext";
 import { Provider } from "react-redux";
-import { HashRouter } from "react-router";
+import { BrowserRouter } from "react-router";
 import { store } from "store/store";
 
 interface LayoutProviderProps {
@@ -9,14 +10,14 @@ interface LayoutProviderProps {
 
 export const LayoutProvider: React.FC<LayoutProviderProps> = ({ children }) => {
     return (
-        <>
-            <HashRouter>
-                <Provider store={store}>
-                    <ChatContextProvider>
+        <BrowserRouter>
+            <Provider store={store}>
+                <ChatContextProvider>
+                    <SidebarContextProvider>
                         {children}
-                    </ChatContextProvider>
-                </Provider>
-            </HashRouter>
-        </>
-    )
-}
+                    </SidebarContextProvider>
+                </ChatContextProvider>
+            </Provider>
+        </BrowserRouter>
+    );
+};

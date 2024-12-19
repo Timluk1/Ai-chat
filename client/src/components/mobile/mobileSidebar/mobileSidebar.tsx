@@ -14,6 +14,7 @@ export const MobileSidebar: React.FC<IMobileSidebarProps> = ({ isSidebarActive, 
     const navigate = useNavigate()
     
     const onClickCreateChat = () => {
+        onMenuClick()
         navigate("/chat")
     }
     
