@@ -1,5 +1,4 @@
 .title-name {
-    margin-bottom: 44px;
     &__name {
         background: var(--text-primary-gradient);
         width: 320px;
@@ -31,6 +30,9 @@
     .title-name {
         &__text {
             display: none;
+        }
+        &__name {
+            text-align: center;
         }
     }
 }

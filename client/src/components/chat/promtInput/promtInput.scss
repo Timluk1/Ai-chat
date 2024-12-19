@@ -1,11 +1,10 @@
 @use "styles/mixins.scss" as mixins;
 
 .promt-input {
-    width: 100%;
     display: flex;
     background: var(--background-third-color);
     border-radius: 28px;
-    padding: 17px;
+    padding: 15px;
     &-layout {
         background-color: white;
         position: sticky;
@@ -29,7 +28,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
         }
     }
     &__buttons {
@@ -44,5 +42,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .promt-input {
+        &__input {
+            font-size: 18px;
+            line-height: 24px;
+        }
     }
 }

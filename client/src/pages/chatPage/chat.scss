@@ -1,4 +1,13 @@
 .chat-page {
-    height: 100vh;
     display: flex;
+    height: 100vh;
+}
+
+@media (max-width: 768px) {
+    .chat-page {
+        position: relative;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    
 }

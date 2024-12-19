@@ -56,7 +56,10 @@ export const messagesSlice = createSliceWithThunks({
             } else {
                 state.messages.push({ chatId, chatName: name, messages: [newMessage] });
             }
-            console.log(state.messages)
+        }),
+
+        cleanError: create.reducer((state) => {
+            state.generateText.error = "";
         }),
 
         generateTextAi: create.asyncThunk<IAsyncMessagesReturn, INewMessage, { rejectValue: string }>(
@@ -74,8 +77,7 @@ export const messagesSlice = createSliceWithThunks({
                     };
                     // Формирование нового сообщения для хранения
                     return ans;
-                } catch (error) {
-                    console.error(error)
+                } catch  {
                     return rejectWithValue("Ошибка при генерации текста");
                 }
             },
@@ -89,6 +91,7 @@ export const messagesSlice = createSliceWithThunks({
                     state.messages.find((chat) => chat.chatId === action.payload.chatId)?.messages.push(action.payload);
                 },
                 rejected: (state, action) => {
+                    console.log("REJECTED", action.payload)
                     state.generateText.loading = false;
                     if (action.payload) {
                         state.generateText.error = action.payload;
@@ -99,5 +102,5 @@ export const messagesSlice = createSliceWithThunks({
     }),
 });
 
-export const { addNewMessage, generateTextAi } = messagesSlice.actions;
+export const { addNewMessage, cleanError, generateTextAi } = messagesSlice.actions;
 export default messagesSlice.reducer;

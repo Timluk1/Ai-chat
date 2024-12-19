@@ -2,3 +2,11 @@
     display: flex;
     height: 100vh;
 }
+
+@media (max-width: 768px) {
+    .home-page {
+        position: relative;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+}

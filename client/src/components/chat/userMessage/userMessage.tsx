@@ -8,12 +8,10 @@ interface IUserMessageProps {
 export const UserMessage: React.FC<IUserMessageProps> = ({ text }) => {
     return (
         <div className="user-message">
-            <div className="icon-layout">
-                <div className="user-icon">
-                    <img src={UserIcon} alt="User Icon" />
-                </div>
+            <div className="user-message__icon-layout">
+                <img src={UserIcon} alt="User Icon" />
             </div>
-            <p>{text}</p>
+            <p className="user-message__text">{text}</p>
         </div>
     );
 }

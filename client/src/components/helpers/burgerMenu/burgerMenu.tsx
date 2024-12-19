@@ -1,6 +1,6 @@
 import Menu from "assets/menu.svg";
 import { Tooltip } from "react-tooltip";
-import { isMobile } from "react-device-detect";
+import { useCheckMobile } from "hooks/useCheckMobile";
 import "./burgerMenu.scss";
 
 interface IBurgerMenuProps {
@@ -9,6 +9,7 @@ interface IBurgerMenuProps {
 }
 
 export const BurgerMenu: React.FC<IBurgerMenuProps> = ({ isSidebarOpen, onClick }) => {
+    const isMobile = useCheckMobile();
     const tooltipText = isSidebarOpen ? "Свернуть меню" : "Развернуть меню";
 
     return (

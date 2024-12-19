@@ -6,25 +6,9 @@
 body {
     @include mixins.default-font;
     overflow: hidden;
+    height: 100%;
 }
 
-.reactMarkDown {
-    // some root styles here
-  }
-  
-  .reactMarkDown ul {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    list-style: disc outside none;
-  }
-  
-  .reactMarkDown ul li {
-    margin-left: 2em;
-    display: list-item;
-    text-align: -webkit-match-parent;
-  }
-   .reactMarkDown p { 
-    font-size: 14px;
-    font-weight: 400; 
-    white-space: pre-wrap;
-  }
+html, #root {
+    height: 100%;
+}

@@ -10,12 +10,17 @@
     transition: transform 0.2s, box-shadow 0.2s;
     max-width: 50%;
 
+    word-wrap: break-word; 
+    white-space: normal;
+    overflow-wrap: anywhere; 
+
     &:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
     }
 
-    .icon-layout {
+    &__icon-layout {
+        flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -26,21 +31,15 @@
         border-radius: 50%;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-        .user-icon {
+        img {
             width: 24px;
             height: 24px;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
         }
     }
 
-    p {
+    &__text {
         margin: 0;
-        font-size: 16px;
+        font-size: 1rem;
         line-height: 1.5;
         color: var(--text-third-color);
 
@@ -50,4 +49,13 @@
             -webkit-text-fill-color: transparent;
         }
     }
+}
+
+
+@media (max-width: 768px) {
+    .user-message {
+        &__text {
+            font-size: 0.85rem;
+        }  
+    }  
 }
