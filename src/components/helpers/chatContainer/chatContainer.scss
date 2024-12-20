@@ -8,7 +8,7 @@
     width: 100%;
     padding: 110px 20px 0px 20px;
     margin: 0 auto;
-    overflow-y: auto;
+    overflow-y: hidden;
     scrollbar-width: thin; 
     scrollbar-color: var(--background-six-color) var(--background-secondary-color); 
     &::-webkit-scrollbar {

@@ -32,6 +32,7 @@ export const ChatPage: React.FC = () => {
 
     return (
         <div className="chat-page">
+            
             <ToastContainer />
             {isMobile
                 ?

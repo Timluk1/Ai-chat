@@ -39,7 +39,7 @@ export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
             textPromt: inputPromt,
             chatId
         }
-        
+
         generateText(generateTextParametrs);
         setInputPromt("");
         if (textareaRef.current) {
@@ -56,17 +56,17 @@ export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
     useScroll(bottomRef, chat.messages);
 
     return (
-        <ChatContainer>
-            {typePage === "chat" && <MessagesList messages={chat.messages} />}
-            {typePage === "home" && <MainChat />}
-            <div ref={bottomRef}></div>
-            <PromtInput
-                text={inputPromt}
-                textareaRef={textareaRef}
-                onChange={changeText}
-                onClickGenerateText={onClickGenerateText}
-                loading={loading}
-            />
-        </ChatContainer>
+            <ChatContainer>
+                {typePage === "chat" && <MessagesList messages={chat.messages} />}
+                {typePage === "home" && <MainChat />}
+                <div ref={bottomRef}></div>
+                <PromtInput
+                    text={inputPromt}
+                    textareaRef={textareaRef}
+                    onChange={changeText}
+                    onClickGenerateText={onClickGenerateText}
+                    loading={loading}
+                />
+            </ChatContainer>
     )
 }
