@@ -6,7 +6,6 @@
 body {
     @include mixins.default-font;
     position: relative;
-    overflow: hidden;
     height: 100%;
 }
 

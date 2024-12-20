@@ -2,6 +2,7 @@ import { UserMessage } from "components/chat/userMessage";
 import classNames from "classnames";
 import { IMessage } from "models/message";
 import { AiAnswer } from "components/chat/aiAnswer"
+import { useEffect, useRef } from "react";
 import "./messagesList.scss";
 
 interface IMessagesListProps {
@@ -9,6 +10,10 @@ interface IMessagesListProps {
 }
 
 export const MessagesList: React.FC<IMessagesListProps> = ({ messages }) => {
+    const messagesEndRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
     return (
             <ul className="messages-list">
                 {messages.map(({ id, from, message }) => {
@@ -28,6 +33,7 @@ export const MessagesList: React.FC<IMessagesListProps> = ({ messages }) => {
                         </li>
                     );
                 })}
+                <div ref={messagesEndRef}></div>
             </ul>
     );
 }

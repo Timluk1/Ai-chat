@@ -31,8 +31,7 @@ export const ChatPage: React.FC = () => {
     }, [loading])
 
     return (
-        <div className="chat-page">
-            
+        <div className="chat-page">   
             <ToastContainer />
             {isMobile
                 ?
