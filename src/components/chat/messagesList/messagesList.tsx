@@ -2,7 +2,8 @@ import { UserMessage } from "components/chat/userMessage";
 import classNames from "classnames";
 import { IMessage } from "models/message";
 import { AiAnswer } from "components/chat/aiAnswer"
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useScroll } from "hooks/useScroll";
 import "./messagesList.scss";
 
 interface IMessagesListProps {
@@ -11,9 +12,9 @@ interface IMessagesListProps {
 
 export const MessagesList: React.FC<IMessagesListProps> = ({ messages }) => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
+    // вызываем хук для прокрутки вниз при добавлении нового сообщения
+    useScroll(messagesEndRef, messages);
+
     return (
             <ul className="messages-list">
                 {messages.map(({ id, from, message }) => {

@@ -4,7 +4,6 @@ import { PromtInput } from "components/chat/promtInput"
 import { useAppSelector } from "hooks/useAppSelector"
 import { useRef } from "react"
 import { useGenerateText } from "hooks/useGenerateText"
-import { useScroll } from "hooks/useScroll"
 import { MainChat } from "../mainChat/mainChat"
 import { useNavigate } from "react-router"
 import { selectMessages } from "store/messages/selectors"
@@ -20,7 +19,6 @@ export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
     const navigate = useNavigate();
     const chat = useAppSelector(state => selectMessages(state, chatId || ""))?.[0] || { messages: [] };
     const loading = useAppSelector((state) => state.messages.generateText.loading);
-    const bottomRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     // получаем текст и данные о чате из контекста чата
@@ -53,7 +51,6 @@ export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
         }
     }
 
-    useScroll(bottomRef, chat.messages);
 
     return (
             <ChatContainer>
