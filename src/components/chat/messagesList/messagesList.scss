@@ -1,5 +1,8 @@
 .messages-list {
     overflow-y: auto;
+    height: 100%;
+    scrollbar-width: thin; /* Узкий скроллбар */
+    scrollbar-color: var(--background-six-color) var(--background-secondary-color); /* Цвет скролла и трека */
     &__item {
         width: 100%;
         display: flex;

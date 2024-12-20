@@ -1,35 +1,19 @@
 .chat-container {
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     max-width: 1052px;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     padding: 110px 20px 0px 20px;
     margin: 0 auto;
     overflow-y: hidden;
     scrollbar-width: thin; 
     scrollbar-color: var(--background-six-color) var(--background-secondary-color); 
-    &::-webkit-scrollbar {
-        width: 8px; 
-    }
-    &::-webkit-scrollbar-track {
-        background: var(--background-secondary-color); 
-        border-radius: 8px; 
-    }
-    &::-webkit-scrollbar-thumb {
-        background: var(--background-six-color); 
-        border-radius: 8px; 
-        border: 2px solid var(--background-secondary-color); 
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        background: var(--background-third-color); 
-    }
 }
 
 @media (max-width: 768px) {
     .chat-container {
-        padding: 0px 20px
+        padding: 0px;
     }
-}   
+}

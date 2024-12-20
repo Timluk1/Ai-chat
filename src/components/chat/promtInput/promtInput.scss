@@ -6,9 +6,10 @@
     border-radius: 28px;
     padding: 15px;
     &-layout {
-        background-color: white;
         position: sticky;
-        bottom: 40px;
+        background-color: white;
+        padding-bottom: 40px;
+        bottom: 0px;
         width: 100%;
     }
 

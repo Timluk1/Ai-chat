@@ -59,7 +59,6 @@ export const Chat: React.FC<IChatProps> = ({ typePage, chatId }) => {
             <ChatContainer>
                 {typePage === "chat" && <MessagesList messages={chat.messages} />}
                 {typePage === "home" && <MainChat />}
-                <div ref={bottomRef}></div>
                 <PromtInput
                     text={inputPromt}
                     textareaRef={textareaRef}

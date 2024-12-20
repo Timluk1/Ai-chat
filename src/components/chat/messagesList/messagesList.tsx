@@ -10,7 +10,6 @@ interface IMessagesListProps {
 
 export const MessagesList: React.FC<IMessagesListProps> = ({ messages }) => {
     return (
-        <div>
             <ul className="messages-list">
                 {messages.map(({ id, from, message }) => {
                     return (
@@ -30,6 +29,5 @@ export const MessagesList: React.FC<IMessagesListProps> = ({ messages }) => {
                     );
                 })}
             </ul>
-        </div>
     );
 }
